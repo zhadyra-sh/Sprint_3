@@ -1,4 +1,4 @@
-package Client;
+package client;
 
 /**
  * Базовый HTTP клиент.

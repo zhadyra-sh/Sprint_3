@@ -34,19 +34,14 @@ public class Courier {
     }
 
     public Courier() {
-
     }
 
     public Courier(String login) {
-        this.login = login;
-        this.password = null;
-        this.firstName = null;
+        this(login, null, null);
     }
 
     public Courier(String login, String password) {
-        this.login = login;
-        this.password = password;
-        this.firstName = null;
+        this(login, password, null);
     }
 
     public Courier(String login, String password, String firstName) {

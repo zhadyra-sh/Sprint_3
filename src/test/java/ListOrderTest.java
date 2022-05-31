@@ -1,5 +1,5 @@
-import Client.BaseHttpClient;
-import Client.OrderApi;
+import client.BaseHttpClient;
+import client.OrderApi;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;

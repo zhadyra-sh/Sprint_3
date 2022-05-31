@@ -1,5 +1,5 @@
-import Client.BaseHttpClient;
-import Client.OrderApi;
+import client.BaseHttpClient;
+import client.OrderApi;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import model.Order;
@@ -29,9 +29,9 @@ public class CreateOrderTest {
     @Parameterized.Parameters(name = "Тестовые данные {0} {1} {2}")
     public static Object[][] getColorsData() {
         return new Object[][]{
-                {Order.getOrderWithoutColor(), HttpStatus.SC_CREATED}, // можно совсем не указывать цвет
-                {Order.getOrderWithBlackColor(), HttpStatus.SC_CREATED}, // можно указать один из цветов — BLACK или GREY
-                {Order.getOrderWithTwoColors(), HttpStatus.SC_CREATED} // можно указать оба цвета
+                {getOrderWithoutColor(), HttpStatus.SC_CREATED}, // можно совсем не указывать цвет
+                {getOrderWithBlackColor(), HttpStatus.SC_CREATED}, // можно указать один из цветов — BLACK или GREY
+                {getOrderWithTwoColors(), HttpStatus.SC_CREATED} // можно указать оба цвета
         };
     }
 
@@ -42,5 +42,30 @@ public class CreateOrderTest {
                 .createOrder(this.order)
                 .then().assertThat().statusCode((int) this.expectedCode)
                 .and().extract().body().path("track");
+    }
+
+    public static Order getOrderWithoutColor() {
+        return new Order(
+                "Alexandra",
+                "Chirkova",
+                "Lenina, 96 apt.",
+                "3",
+                "+7 705 555 55 55",
+                4,
+                "2022-07-07",
+                "Privet Mir"
+        );
+    }
+
+    public static Order getOrderWithBlackColor() {
+        Order orderBlack = getOrderWithoutColor();
+        orderBlack.setColor(new String[]{"BLACK"});
+        return orderBlack;
+    }
+
+    public static Order getOrderWithTwoColors() {
+        Order orderTwoColor = getOrderWithoutColor();
+        orderTwoColor.setColor(new String[]{"BLACK", "GREY"});
+        return orderTwoColor;
     }
 }

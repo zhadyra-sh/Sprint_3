@@ -16,31 +16,6 @@ public class Order {
     public Order() {
     }
 
-    public static Order getOrderWithoutColor() {
-        return new Order(
-                "Alexandra",
-                "Chirkova",
-                "Lenina, 96 apt.",
-                "3",
-                "+7 705 555 55 55",
-                4,
-                "2022-07-07",
-                "Privet Mir"
-        );
-    }
-
-    public static Order getOrderWithBlackColor() {
-        Order orderBlack = Order.getOrderWithoutColor();
-        orderBlack.color = new String[]{"BLACK"};
-        return orderBlack;
-    }
-
-    public static Order getOrderWithTwoColors() {
-        Order orderTwoColor = Order.getOrderWithoutColor();
-        orderTwoColor.color = new String[]{"BLACK", "GREY"};
-        return orderTwoColor;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -115,14 +90,7 @@ public class Order {
 
     public Order(String firstName, String lastName, String address, String metroStation,
                  String phone, int rentTime, String deliveryDate, String comment) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.metroStation = metroStation;
-        this.phone = phone;
-        this.rentTime = rentTime;
-        this.deliveryDate = deliveryDate;
-        this.comment = comment;
+        this(firstName, lastName, address, metroStation, phone, rentTime, deliveryDate, comment, null);
     }
 
     public Order(String firstName, String lastName, String address, String metroStation,
